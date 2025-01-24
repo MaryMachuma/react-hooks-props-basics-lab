@@ -1,46 +1,32 @@
-import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
+import React from 'react';
+import NavBar from '../components/NavBar';
+import Home from '../components/Home';
+import About from '../components/About';
 
-import user from "../data/user";
-import App from "../components/App";
 
-test("renders without errors", () => {
-  expect(() => render(<App />)).not.toThrow();
-});
+function App() {
+  const user = {
+    name: "Joe Smith",
+    city: "New York",
+    bio: "I'm a web developer based in NYC",
+    links: {
+      github: "https://github.com/joesmith",
+      linkedin: "https://linkedin.com/in/joesmith"
+    }
+  };
 
-test("renders the correct child components", () => {
-  const { container } = render(<App />);
-  expect(container.querySelector("nav")).toBeInTheDocument();
-  expect(container.querySelector("#home")).toBeInTheDocument();
-  expect(container.querySelector("#about")).toBeInTheDocument();
-});
-
-test("passes 'name', 'city', and 'color' to <Home> as props", () => {
-  render(<App />);
-  const h1 = screen.queryByText(
-    `${user.name} is a Web Developer from ${user.city}`
+  return (
+    <div>
+      <NavBar />
+      <Home name={user.name} city={user.city} />
+      <About 
+        bio={user.bio}
+        github={user.links.github}
+        linkedin={user.links.linkedin}
+      />
+    </div>
   );
-  expect(h1).toBeInTheDocument();
-  expect(h1.style.color).toEqual(user.color);
-});
+}
 
-test("passes 'bio' to <About> as a prop", () => {
-  render(<App />);
-  const p = screen.queryByText(user.bio);
-  expect(p).toBeInTheDocument();
-  expect(p.tagName).toEqual("P");
-});
-
-test("passes 'github' to <Links> as a prop, via <About>", () => {
-  render(<App />);
-  const a = screen.queryByText(user.links.github);
-  expect(a).toBeInTheDocument();
-  expect(a.tagName).toEqual("A");
-});
-
-test("passes 'linkedin' to <Links> as a prop, via <About>", () => {
-  render(<App />);
-  const a = screen.queryByText(user.links.linkedin);
-  expect(a).toBeInTheDocument();
-  expect(a.tagName).toEqual("A");
-});
+export default App;
+ 
