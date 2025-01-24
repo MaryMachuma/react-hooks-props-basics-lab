@@ -1,12 +1,18 @@
-import React from "react";
-import Links from "./Links";
+import React from 'react';
+import Links from './Links';
 
-function About({ user }) {
+function About() {
+  // Define links object with default values
+  const links = {
+    github: 'https://github.com/yourusername',
+    linkedin: 'https://linkedin.com/in/yourusername'
+  };
+
   return (
     <div>
-      <h2>About Me</h2>
-      {user.bio && <p>{user.bio}</p>}
-      <Links github={user.github} linkedin={user.linkedin} />
+      <h1>About Me</h1>
+      <img src="https://i.imgur.com/mV8PQxj.gif" alt="I made this" />
+      <Links github={links.github} linkedin={links.linkedin} />
     </div>
   );
 }

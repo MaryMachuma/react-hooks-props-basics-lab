@@ -1,13 +1,15 @@
-import React from "react";
+import React from 'react';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import Links from '../components/Links';
 
-function Links({ github, linkedin }) {
-  return (
-    <div>
-      <h3>Links</h3>
-      <a href={github}>{github}</a>
-      <a href={linkedin}>{linkedin}</a>
-    </div>
+test('renders Links component', () => {
+  const { getByText } = render(
+    <Links 
+      github="https://github.com/test" 
+      linkedin="https://linkedin.com/test" 
+    />
   );
-}
-
-export default Links;
+  expect(getByText('GitHub')).toBeInTheDocument();
+  expect(getByText('LinkedIn')).toBeInTheDocument();
+});

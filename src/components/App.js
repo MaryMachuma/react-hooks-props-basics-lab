@@ -1,21 +1,17 @@
-import React from "react";
-import NavBar from "./NavBar";
-import Home from "./Home";
-import About from "./About";
+import React from 'react';
+import Home from './Home';
+import About from './About';
+import Links from './Links';
 
 function App() {
-  const user = {
-    name: "John Doe",
-    bio: "Software Engineer with a passion for building great products.",
-    github: "https://github.com/JohnDoe",
-    linkedin: "https://linkedin.com/in/JohnDoe",
-  };
-
   return (
-    <div>
-      <NavBar />
-      <Home user={user} />
-      <About user={user} />
+    <div className="App">
+      <Home />
+      <About />
+      <Links 
+        github="https://github.com/yourusername" 
+        linkedin="https://linkedin.com/in/yourusername" 
+      />
     </div>
   );
 }

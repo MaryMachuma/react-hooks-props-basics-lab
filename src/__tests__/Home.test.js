@@ -1,13 +1,9 @@
 import React from 'react';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import Home from '../components/Home';
 
-function Home({ name, city }) {
-  return (
-    <div id="home">
-      <h1 style={{ color: "firebrick" }}>
-        {name} is a Web Developer from {city}
-      </h1>
-    </div>
-  );
-}
-
-export default Home;
+test('renders Home component', () => {
+  const { getByText } = render(<Home />);
+  expect(getByText(/Web Developer/i)).toBeInTheDocument();
+});
